@@ -1,18 +1,41 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-
-import { AppRoutingModule } from './app-routing.module';
+import { NgModule, Injector } from '@angular/core';
 import { AppComponent } from './app.component';
+import { ComponentsModule } from './components.module';
+import { SpinnerOverlayComponent } from './components/spinner-overlay/spinner-overlay.component';
+import { ProvidersModule } from './providers.module';
+//import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbPaginationModule, NgbAlertModule, NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+    //BrowserModule,
+    //AppRoutingModule,
+    //BrowserAnimationsModule,
+    //MaterialModule,
+    //ReactiveFormsModule,
+    ProvidersModule,
+    //HttpClientModule,
+    ComponentsModule,
+    NgbModule,
+    //NgbActiveModal
+
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+
+  entryComponents: [
+    SpinnerOverlayComponent,
+  ],
+
+  exports: [
+    NgbModule,
+    //NgbActiveModal
+  ]
 })
-export class AppModule { }
+export class AppModule {
+  static injector: Injector;
+
+  constructor(injector: Injector) {
+    AppModule.injector = injector;
+  }
+}
+
